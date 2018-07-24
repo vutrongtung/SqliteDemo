@@ -1,5 +1,5 @@
 //
-//  AddViewController.swift
+//  EditViewController.swift
 //  CoreDataDemo
 //
 //  Created by ANHTT-D1 on 7/24/18.
@@ -8,14 +8,21 @@
 
 import UIKit
 
-class AddViewController: UIViewController, UIGestureRecognizerDelegate {
+class EditViewController: UIViewController, UIGestureRecognizerDelegate {
 
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var imagePickView: UIImageView!
     @IBOutlet weak var phoneTextField: UITextField!
-    @IBOutlet weak var nameTextField: UITextField!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var friends: [Friend] = []
+    var friend: Friend?
+    var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDetail()
+        getData()
         addGesture(image: imagePickView)
         // Do any additional setup after loading the view.
     }
@@ -24,18 +31,28 @@ class AddViewController: UIViewController, UIGestureRecognizerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func saveTapped(_ sender: Any) {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let appDeledate = UIApplication.shared.delegate as! AppDelegate
-        let friend = Friend(context: context)
-        let saveImageData = UIImageJPEGRepresentation(imagePickView.image!, 1)
+    
+    func getData() {
+        do {
+            friends = try context.fetch(Friend.fetchRequest())
+        }
+        catch {
+            print("Fetching Failed")
+        }
+    }
+    
+    func setupDetail() {
         
-        friend.setValue(saveImageData, forKey: "image")
-        friend.name = nameTextField.text
-        friend.phone_number = phoneTextField.text
-        
-        appDeledate.saveContext()
-        let _ = navigationController?.popViewController(animated: true)
+        nameTextField.text = friend?.name
+        phoneTextField.text = friend?.phone_number
+        if let imageData = friend?.value(forKey: "image") as? Data {
+            if let image = UIImage(data: imageData) {
+                imagePickView.image = image
+            }
+        }
+        else {
+            imagePickView.image = UIImage(named: "default")
+        }
     }
     
     func addGesture(image: UIImageView) {
@@ -57,6 +74,19 @@ class AddViewController: UIViewController, UIGestureRecognizerDelegate {
         present(imagePickerController, animated: true, completion: nil)
     }
     
+    @IBAction func saveTapped(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        friends[index!].name = nameTextField.text
+        friends[index!].phone_number = phoneTextField.text
+        let saveImageData = UIImageJPEGRepresentation(imagePickView.image!, 1)
+        friends[index!].setValue(saveImageData, forKey: "image")
+        
+        appDelegate.saveContext()
+
+        let _ = navigationController?.popViewController(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -69,7 +99,7 @@ class AddViewController: UIViewController, UIGestureRecognizerDelegate {
 
 }
 
-extension AddViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension EditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -83,5 +113,5 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
         imagePickView.image = selectedImage
         dismiss(animated: true, completion: nil)
     }
-
+    
 }
