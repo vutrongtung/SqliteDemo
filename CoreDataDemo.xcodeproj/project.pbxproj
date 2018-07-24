@@ -13,6 +13,8 @@
 		2348D155210710CB00E71FEC /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2348D153210710CB00E71FEC /* CoreDataDemo.xcdatamodeld */; };
 		2348D157210710CC00E71FEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2348D156210710CC00E71FEC /* Assets.xcassets */; };
 		2348D15A210710CC00E71FEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2348D158210710CC00E71FEC /* LaunchScreen.storyboard */; };
+		2348D1652107116700E71FEC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348D1642107116700E71FEC /* TableViewCell.swift */; };
+		2348D167210712DB00E71FEC /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2348D166210712DB00E71FEC /* AddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		2348D156210710CC00E71FEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2348D159210710CC00E71FEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2348D15B210710CC00E71FEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2348D1642107116700E71FEC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		2348D166210712DB00E71FEC /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,57 @@
 		2348D14B210710CB00E71FEC /* CoreDataDemo */ = {
 			isa = PBXGroup;
 			children = (
-				2348D14C210710CB00E71FEC /* AppDelegate.swift */,
-				2348D14E210710CB00E71FEC /* ViewController.swift */,
-				2348D150210710CB00E71FEC /* Main.storyboard */,
-				2348D156210710CC00E71FEC /* Assets.xcassets */,
-				2348D158210710CC00E71FEC /* LaunchScreen.storyboard */,
 				2348D15B210710CC00E71FEC /* Info.plist */,
-				2348D153210710CB00E71FEC /* CoreDataDemo.xcdatamodeld */,
+				2348D16A2107231700E71FEC /* Resource */,
+				2348D168210722CE00E71FEC /* Application */,
+				2348D163210710F700E71FEC /* Model */,
+				2348D162210710F100E71FEC /* View */,
+				2348D161210710E500E71FEC /* Controller */,
 			);
 			path = CoreDataDemo;
+			sourceTree = "<group>";
+		};
+		2348D161210710E500E71FEC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2348D14E210710CB00E71FEC /* ViewController.swift */,
+				2348D166210712DB00E71FEC /* AddViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2348D162210710F100E71FEC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2348D1642107116700E71FEC /* TableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2348D163210710F700E71FEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2348D153210710CB00E71FEC /* CoreDataDemo.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2348D168210722CE00E71FEC /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				2348D158210710CC00E71FEC /* LaunchScreen.storyboard */,
+				2348D150210710CB00E71FEC /* Main.storyboard */,
+				2348D14C210710CB00E71FEC /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		2348D16A2107231700E71FEC /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2348D156210710CC00E71FEC /* Assets.xcassets */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +184,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2348D167210712DB00E71FEC /* AddViewController.swift in Sources */,
 				2348D14F210710CB00E71FEC /* ViewController.swift in Sources */,
+				2348D1652107116700E71FEC /* TableViewCell.swift in Sources */,
 				2348D155210710CB00E71FEC /* CoreDataDemo.xcdatamodeld in Sources */,
 				2348D14D210710CB00E71FEC /* AppDelegate.swift in Sources */,
 			);
