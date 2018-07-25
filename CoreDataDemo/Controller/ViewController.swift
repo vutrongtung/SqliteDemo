@@ -61,17 +61,7 @@ extension ViewController: UITableViewDataSource {
         let friend = friends[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         
-        cell.nameLabel.text = friend.name
-        cell.phoneLabel.text = friend.phone_number
-        
-        if let imageData = friend.value(forKey: "image") as? Data {
-            if let image = UIImage(data: imageData) {
-                cell.imageFriendView.image = image
-            }
-        }
-        else {
-            cell.imageFriendView.image = UIImage(named: "default")
-        }
+        cell.update(friend: friend)
         
         return cell
     }

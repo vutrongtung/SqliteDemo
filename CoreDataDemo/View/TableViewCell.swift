@@ -24,5 +24,18 @@ class TableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func update(friend: Friend) {
+        self.nameLabel.text = friend.name
+        self.phoneLabel.text = friend.phone_number
+        
+        if let imageData = friend.value(forKey: "image") as? Data {
+            if let image = UIImage(data: imageData) {
+                self.imageFriendView.image = image
+            }
+        }
+        else {
+            self.imageFriendView.image = UIImage(named: "default")
+        }
+    }
 }

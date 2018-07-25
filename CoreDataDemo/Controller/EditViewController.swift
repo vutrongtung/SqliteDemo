@@ -42,7 +42,6 @@ class EditViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func setupDetail() {
-        
         nameTextField.text = friend?.name
         phoneTextField.text = friend?.phone_number
         if let imageData = friend?.value(forKey: "image") as? Data {
@@ -76,10 +75,10 @@ class EditViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func saveTapped(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let saveImageData = UIImageJPEGRepresentation(imagePickView.image!, 1)
         
         friends[index!].name = nameTextField.text
         friends[index!].phone_number = phoneTextField.text
-        let saveImageData = UIImageJPEGRepresentation(imagePickView.image!, 1)
         friends[index!].setValue(saveImageData, forKey: "image")
         
         appDelegate.saveContext()
